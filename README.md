@@ -1,28 +1,24 @@
 <div align="center">
 
-  <a href="https://ysharf.github.io/Timer/">
-    <img src="https://wsrv.nl/?url=https://github.com/user-attachments/assets/89fb7a4f-0ddb-4d1c-ad11-b5e2636f84b7&w=160&h=160&fit=cover&mask=circle&output=png" width="96" height="96" alt="MORPHOS ∞" />
-  </a>
-
-  <h1>MORPHOS ∞</h1>
+  <h1>∞ MORPHOS</h1>
 
   <p>
-    <b>Living Mathematical Timepiece, 3D Split-Flap Clock & Pomodoro Focus Studio</b><br/>
-    <sub>Built entirely inside a single, zero-dependency HTML file with real-time spring physics & Web Audio synthesis.</sub>
+    <b>Interactive Desk Clock, 3D Split-Flap Timepiece & Pomodoro Focus Studio</b><br/>
+    <sub>A distraction-free clock and study companion with interactive canvas physics, 18 themes, and real-time audio synthesis — all in a single HTML file.</sub>
   </p>
 
   <p>
     <a href="https://ysharf.github.io/Timer/">
-      <img src="https://img.shields.io/badge/LIVE_DEMO-LAUNCH_APP-9C8AE8?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0d1117" alt="Live Demo" />
+      <img src="https://img.shields.io/badge/LIVE_DEMO-OPEN_CLOCK-9C8AE8?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=0d1117" alt="Live Demo" />
     </a>
-    <img src="https://img.shields.io/badge/ENGINE-60FPS_CANVAS_%2B_CSS_3D-75DCD0?style=for-the-badge&labelColor=0d1117" alt="Engine" />
-    <img src="https://img.shields.io/badge/AUDIO-WEB_AUDIO_SYNTH-C9CED8?style=for-the-badge&labelColor=0d1117" alt="Audio" />
+    <img src="https://img.shields.io/badge/MODES-MORPHOS_%7C_3D_FLIP_%7C_DIGITAL-75DCD0?style=for-the-badge&labelColor=0d1117" alt="Modes" />
+    <img src="https://img.shields.io/badge/DEPENDENCIES-ZERO_(1_FILE)-C9CED8?style=for-the-badge&labelColor=0d1117" alt="Zero Dependencies" />
   </p>
 
   <p>
     <a href="https://ysharf.github.io/Timer/"><b>Live Demo</b></a> ·
     <a href="#display-engines">Display Engines</a> ·
-    <a href="#interactive-physics">Physics</a> ·
+    <a href="#interactive-physics">Interactive Physics</a> ·
     <a href="#focus--time-suite">Focus Suite</a> ·
     <a href="#shortcuts">Shortcuts</a> ·
     <a href="#العربية"><b>العربية</b></a>
@@ -30,48 +26,53 @@
 
 </div>
 
-<br/>
+---
+
+## Overview
+
+**MORPHOS ∞** combines three distinct clock styles—a physics-driven mathematical canvas clock, a classic 3D mechanical flip clock, and a clean digital display—into one lightweight web app.
+
+It is built inside a single, dependency-free `index.html` file so it loads instantly, works offline, and stays awake on secondary monitors, tablets, and mobile phones during long study or work sessions.
 
 ---
 
 ## Display Engines
 
-Switch seamlessly between three distinct rendering engines at any time by pressing <kbd>D</kbd>:
+Switch between three rendering engines at any time by pressing <kbd>D</kbd>:
 
-| Engine | Rendering Architecture | Visual Character |
+| Engine | Architecture | Description |
 | :--- | :--- | :--- |
-| **MORPHOS ∞** | **HTML5 2D Canvas + Spring Physics** | Digits (`0–9`) are constructed from connected cubic Bézier spines, counter-manifolds, and elastic tension chords that physically unfold and morph into the next number. |
-| **3D Split-Flap** | **Hardware-Accelerated CSS 3D** | Classic mechanical split-flap cards with perspective depth shadows, hinge notches, and optional synthesized mechanical tick audio. |
-| **Minimal Digital** | **Tabular Typography Engine** | High-contrast numerals (`Inter`, `Oswald`, `JetBrains Mono`, `Space Grotesk`) with per-digit settle animations and `Pure`, `Glass`, or `Neon` framing. |
+| **MORPHOS ∞** | **HTML5 Canvas + Spring Physics** | Digits (`0–9`) are drawn as continuous cubic Bézier curves with internal tension strings. On every tick, numbers physically unfold and morph into the next digit. |
+| **3D Split-Flap** | **CSS 3D Transforms** | Mechanical split-flap cards with realistic depth shadows, hinge notches, and an optional synthesized flip tick sound. |
+| **Minimal Digital** | **Tabular Typography** | High-contrast numerals (`Inter`, `Oswald`, `JetBrains Mono`, `Space Grotesk`) with smooth settle animations and `Pure`, `Glass`, or `Neon` styles. |
 
 ---
 
 ## Interactive Physics
 
-In **MORPHOS ∞** mode, the clock is a live physical simulation rather than a pre-rendered animation:
+When using **MORPHOS ∞** mode, the digits respond directly to your mouse or touch:
 
-* **Cursor & Touch Vector Field (`Attract` / `Repel`):** Moving your mouse or swiping your finger across the digits warps the Bézier control handles in real time using a smooth $C^2$ falloff curve, complete with velocity wake and recoil when reversing direction.
-* **Pluckable Harmonic Chords:** Each digit contains internal tension strings that can be grabbed and pulled taut with your mouse or finger. Releasing a chord triggers damped harmonic oscillation and a **Web Audio string pluck** whose pitch bend and brightness scale with your pull tension.
-* **Cross-Digit Spark Coupling:** When a digit changes, arcane energy packets travel along its spine and leap across the geometric separators into neighboring digits.
-* **Living Astrolabe Seal:** The geometric astrolabe behind the clock tracks active progress and permanently etches small runic seals as you complete focus sessions, tasks, and stopwatch laps.
+* **Mouse & Touch Field (`Attract` / `Repel`):** Moving your cursor or swiping a finger across the clock bends and warps the Bézier curves in real time, reacting to your movement speed and direction changes.
+* **Pluckable Strings:** Every digit has internal tension chords that you can grab, pull, and release like guitar strings. Releasing a chord triggers harmonic vibration and a **Web Audio string pluck** scaled to how hard you pulled it.
+* **Cross-Digit Sparks:** When a number changes, energy sparks travel along its curves and jump across the separators into neighboring digits.
+* **Background Astrolabe:** A subtle geometric circle behind the clock tracks your current minute or timer progress and etches small runic marks as you finish focus sessions, tasks, or laps.
 
 ---
 
 ## Focus & Time Suite
 
-| Mode | Capabilities |
+| Tool | Features |
 | :--- | :--- |
-| **Clock** | 12-hour / 24-hour wall clock with optional seconds manifold, weekday, and calendar date. |
-| **Timer** | 16 calibrated quick presets (`15s` to `60m`) + custom hours, minutes, and seconds input. |
-| **Study (Pomodoro)** | Fully customizable Focus, Short Break, and Long Break durations (up to `360m`), quick presets (`10m`–`90m`), and automatic session logging. |
-| **Stopwatch** | `10ms` precision chronometer with split duration and total elapsed lap table. |
-| **Countdown** | Target date & time horizon countdown with persistent browser storage. |
+| **Wall Clock** | 12-hour or 24-hour format with optional seconds, weekday, and date display. |
+| **Quick Timer** | 16 ready-made presets (`15s` to `60m`) plus custom hours, minutes, and seconds input. |
+| **Study Timer (Pomodoro)** | Freely customizable Focus, Short Break, and Long Break durations (up to `360m`), quick presets (`10m`–`90m`), and automatic session tracking. |
+| **Stopwatch** | `10ms` precision stopwatch with split and lap history table. |
+| **Countdown** | Target date and time countdown that saves automatically in your browser. |
 
-### Built-In Study Tools
-* **Procedural Task Sigils:** Adding a task in Study Mode hashes its name into a unique geometric SVG sigil. Each completed focus session illuminates one segment of the sigil until the task is complete.
-* **Generative Web Audio Soundscape:** Synthesized 100% in real time with zero external `.mp3` files—featuring an **Euclidean Rhythm Generator** $(k, n)$, an **Ambient Harmonic Drone**, and an optional **Binaural Stereo Offset**.
-* **Mobile & Tablet Keep-Awake:** Uses a triple-layer wake lock (Native `navigator.wakeLock` + visibility watchdog + offscreen `2x2` canvas stream) so phones and tablets never dim during a study session.
-* **18 Curated Themes:** 16 Dark / OLED themes and 2 Light themes, plus **Clean Fullscreen Mode** where all UI controls vanish completely (`0%` opacity).
+### Built for Deep Work
+* **Procedural Task Sigils:** Each task you add in Study Mode generates a unique geometric icon from its title. Completing focus sessions progressively lights up segments of the icon.
+* **Built-In Study Soundscape:** Generates background focus audio in real time using the Web Audio API (no external audio files needed), including an **Euclidean Rhythm** pulse generator, a warm **Ambient Drone**, and an optional **Binaural Offset**.
+* **Clean Fullscreen & Always-On Screen:** Double-click (or double-tap on mobile) anywhere on the background to hide all buttons (`0%` opacity) and keep your screen awake on mobile, tablet, or desktop.
 
 ---
 
@@ -79,18 +80,17 @@ In **MORPHOS ∞** mode, the clock is a live physical simulation rather than a p
 
 | Key / Gesture | Action |
 | :---: | :--- |
-| <kbd>Space</kbd> | Start / Pause active Timer, Study session, or Stopwatch |
-| <kbd>D</kbd> | Cycle Display Engine (`MORPHOS ∞` → `3D Flip` → `Digital`) |
-| <kbd>F</kbd> or <kbd>Double-Tap</kbd> | Toggle **Clean Fullscreen Mode** (hides all UI 100%) |
-| <kbd>Esc</kbd> | Exit Fullscreen or close open drawers and modals |
+| <kbd>Space</kbd> | Start or Pause the active Timer, Study session, or Stopwatch |
+| <kbd>D</kbd> | Cycle between `MORPHOS ∞`, `3D Flip`, and `Digital` modes |
+| <kbd>F</kbd> or <kbd>Double-Tap</kbd> | Toggle **Clean Fullscreen Mode** (hides all UI controls 100%) |
+| <kbd>Esc</kbd> | Exit Fullscreen or close any open menu |
 
 ---
 
-## Quick Start
+## Run Locally
 
-The entire application is self-contained inside `index.html`. No build step or dependencies required:
+No installation or build tools needed. Clone the repo and open `index.html` in any browser:
 
 ```bash
 git clone https://github.com/ysharf/Timer.git
 cd Timer
-# Open index.html in any browser
