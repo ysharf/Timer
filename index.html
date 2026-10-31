@@ -20,7 +20,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MORPHOS ∞" />
   <meta name="description"
-    content="MORPHOS ∞ & 3D Flip Clock — Living Mathematical Timepiece, Interactive Cursor Physics, Harmonic String Plucking, Living Spell Circle & Pomodoro Study Timer." />
+    content="MORPHOS ∞ & 3D Flip Clock — Living Mathematical Timepiece, Cumulative Time Tracker, Interactive Cursor Physics & Study Timer." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1423,7 +1423,7 @@
     .stage-subbar {
       position: relative;
       z-index: 12;
-      min-height: 24px;
+      min-height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1438,7 +1438,7 @@
     .achievement-pill {
       background: var(--surface-ui);
       border: 1px solid var(--border-ui);
-      padding: 4px 13px;
+      padding: 5px 14px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -1450,12 +1450,48 @@
       color: var(--text-primary);
     }
 
+    .cumulative-tracker-pill {
+      background: var(--surface-ui);
+      border: 1px solid rgba(117, 220, 208, 0.35);
+      padding: 5px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cumulative-tracker-pill:hover {
+      border-color: #75DCD0;
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+    }
+
+    .cumulative-tracker-pill .sum-badge {
+      color: #75DCD0;
+      font-weight: 800;
+    }
+
+    .cumulative-tracker-pill strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .cumulative-live-delta {
+      color: #9C8AE8;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
     /* ==========================================================================
        5. BOTTOM INTERACTIVE DOCK & MODE CONTROLS
        ========================================================================== */
     .bottom-dock {
       width: 100%;
-      max-width: 960px;
+      max-width: 980px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1529,6 +1565,29 @@
     .btn-primary:hover:not(:disabled) {
       background: #ffffff;
       color: #030405;
+    }
+
+    .btn-finish {
+      border-color: rgba(117, 220, 208, 0.45);
+      color: #75DCD0;
+      background: rgba(117, 220, 208, 0.08);
+    }
+
+    .btn-finish:hover:not(:disabled) {
+      border-color: #75DCD0;
+      background: rgba(117, 220, 208, 0.18);
+      color: #ffffff;
+    }
+
+    .btn-discard {
+      border-color: rgba(255, 120, 148, 0.35);
+      color: #ff94ab;
+    }
+
+    .btn-discard:hover:not(:disabled) {
+      border-color: #ff7894;
+      background: rgba(255, 120, 148, 0.14);
+      color: #ffffff;
     }
 
     .btn-sm {
@@ -1964,7 +2023,7 @@
     }
 
     /* ==========================================================================
-       7. STUDY TASKS WITH PROCEDURAL SIGILS & STATISTICS MODAL
+       7. STUDY TASKS, CUMULATIVE TRACKER & STATISTICS MODALS
        ========================================================================== */
     .modal-center {
       position: fixed;
@@ -2093,6 +2152,75 @@
 
     .sigil-inspector-box.open {
       display: flex;
+    }
+
+    /* Cumulative Time Tracker Hero & List */
+    .cumulative-hero-card {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--bg-card) 92%, #9C8AE8), var(--bg-card));
+      border: 1px solid rgba(117, 220, 208, 0.35);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cumulative-hero-total {
+      font-family: var(--font-mono);
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 800;
+      color: #75DCD0;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .cumulative-hero-arabic {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+
+    .cumulative-session-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-ui);
+      border-radius: 10px;
+      gap: 10px;
+      transition: border-color 0.2s ease;
+    }
+
+    .cumulative-session-item:hover {
+      border-color: rgba(156, 138, 232, 0.5);
+    }
+
+    .session-num-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #9C8AE8;
+      background: rgba(156, 138, 232, 0.14);
+      border: 1px solid rgba(156, 138, 232, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .session-duration-pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #75DCD0;
+      background: rgba(117, 220, 208, 0.1);
+      border: 1px solid rgba(117, 220, 208, 0.25);
+      padding: 4px 10px;
+      border-radius: 7px;
+      flex-shrink: 0;
     }
 
     .stats-kpi-grid {
@@ -2367,7 +2495,7 @@
           <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="3"></circle>
             <path
-              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0-2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
             </path>
           </svg>
         </button>
@@ -2646,6 +2774,15 @@
 
       <!-- Under-Clock Status Bar (Auto-Hides 100% on Idle/Fullscreen) -->
       <div class="stage-subbar auto-hide-ui">
+        <!-- Cumulative Time Tracker Pill (Visible in Timer & Study modes) -->
+        <button type="button" id="cumulativeTrackerPill" class="cumulative-tracker-pill" style="display:none;"
+          title="Open Cumulative Time Tracker Log (سجل الوقت التراكمي)">
+          <span class="sum-badge">∑</span>
+          <span>Cumulative: <strong id="cumPillTotalText">0m</strong> (<span id="cumPillCountText">0</span>
+            sessions)</span>
+          <span id="cumPillLiveDelta" class="cumulative-live-delta"></span>
+        </button>
+
         <div id="studyAchievementBar" class="achievement-pill" style="display:none;">
           Today: <strong id="studyTodayCount">0</strong> completed &middot; <strong id="studyTodayMinutes">0</strong>
           min focused
@@ -2661,15 +2798,25 @@
 
       <div class="control-row" id="dockTaskRow">
         <input type="text" id="dockTaskInput" class="dock-task-input" maxlength="100"
-          placeholder="Task name (optional)…" autocomplete="off" />
+          placeholder="Task / Session name (optional)…" autocomplete="off" />
       </div>
 
-      <!-- 1. TIMER CONTROLS & PRESETS (Time Picker Hidden by default & closes automatically) -->
+      <!-- 1. TIMER CONTROLS + CUMULATIVE TIME TRACKER -->
       <div id="dockTimer" style="display:none; width:100%; flex-direction:column; align-items:center; gap:8px;">
         <div class="control-row">
           <button class="btn btn-primary" id="timerStartBtn">Start Timer</button>
-          <button class="btn" id="timerResetBtn">Reset</button>
+          <button class="btn btn-finish" id="timerFinishLogBtn" disabled
+            title="Finish current session & add elapsed time to Cumulative Tracker (إنهاء وحساب الوقت الذي مضى)">
+            Finish & Count · إنهاء
+          </button>
+          <button class="btn btn-discard" id="timerResetBtn"
+            title="Stop & reset timer without counting time (إيقاف وإعادة بدون حساب الوقت)">
+            Stop (No Count) · إيقاف
+          </button>
           <button class="btn btn-sm" id="togglePresetsBtn">Set Time ⏱</button>
+          <button class="btn btn-sm" id="openCumulativeModalTimerBtn">
+            Session Log ∑ (<span id="timerLogCountBadge">0</span>)
+          </button>
         </div>
 
         <div class="dock-panel hidden" id="timerPresetsPanel">
@@ -2689,13 +2836,22 @@
         </div>
       </div>
 
-      <!-- 2. STUDY TIMER (POMODORO) + CUSTOM STUDY TIME (Hidden by default & closes on Apply) -->
+      <!-- 2. STUDY TIMER (POMODORO) + CUMULATIVE TRACKER -->
       <div id="dockStudy" style="display:none; width:100%; flex-direction:column; align-items:center; gap:8px;">
         <div class="control-row">
           <button class="btn btn-primary" id="studyStartBtn">Start Session</button>
-          <button class="btn" id="studyResetBtn">Reset</button>
-          <button class="btn" id="studyCompleteNowBtn">Complete & Log</button>
+          <button class="btn btn-finish" id="studyCompleteNowBtn"
+            title="Finish now & count elapsed time (إنهاء الجلسة وحساب الوقت)">
+            Finish & Count · إنهاء
+          </button>
+          <button class="btn btn-discard" id="studyResetBtn"
+            title="Stop & reset without counting (إيقاف بدون حساب الوقت)">
+            Stop (No Count) · إيقاف
+          </button>
           <button class="btn btn-sm" id="toggleStudyTimeDockBtn">Set Time ⏱</button>
+          <button class="btn btn-sm" id="openCumulativeModalStudyBtn">
+            Session Log ∑ (<span id="studyLogCountBadge">0</span>)
+          </button>
           <button class="btn btn-sm" id="openTasksModalBtn">Tasks (<span id="activeTaskCount">0</span>)</button>
           <button class="btn btn-sm" id="openStatsModalBtn">Analytics</button>
           <button class="btn btn-sm" id="toggleSoundscapeDockBtn">Soundscape ♪</button>
@@ -3167,6 +3323,54 @@
   </aside>
 
   <!-- ==========================================================================
+       CUMULATIVE TIME TRACKER MODAL (سجل الوقت التراكمي للجلسات)
+       ========================================================================== -->
+  <div class="modal-center" id="cumulativeModal">
+    <div class="drawer-header">
+      <span class="drawer-title">Cumulative Time Tracker · سجل الوقت التراكمي</span>
+      <button class="icon-btn" id="closeCumulativeModalBtn" style="width:34px; height:34px;">✕</button>
+    </div>
+    <div class="drawer-body">
+
+      <!-- Total Accumulated Time Hero Card -->
+      <div class="cumulative-hero-card">
+        <div>
+          <span class="section-label" style="color:#9C8AE8;">Total Accumulated Time · الإجمالي التراكمي</span>
+          <div class="cumulative-hero-total" id="cumModalHeroTotal">0h 00m 00s</div>
+          <div class="cumulative-hero-arabic" id="cumModalHeroArabic">0 دقيقة</div>
+        </div>
+        <div style="text-align:right; font-family:var(--font-mono); font-size:0.76rem; color:var(--text-secondary);">
+          <div>Sessions: <strong style="color:var(--text-primary);" id="cumModalSessionCount">0</strong></div>
+          <div style="margin-top:4px;">Digital: <strong style="color:#75DCD0;" id="cumModalClockFormat">00:00:00</strong></div>
+        </div>
+      </div>
+
+      <!-- Manual Add Session Form -->
+      <form class="task-form" id="manualAddSessionForm" style="margin-bottom:4px;">
+        <input type="text" class="task-input" id="manualSessionTitle"
+          placeholder="Add manual session (e.g. Revision / مراجعة)…" />
+        <div class="num-field-group">
+          <input type="number" class="num-input" id="manualSessionMin" min="1" max="600" value="30"
+            title="Duration in minutes" />
+          <span>min</span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">+ Add Time</button>
+      </form>
+
+      <!-- Individual Logged Sessions List -->
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="section-label">Logged Sessions · الجلسات المسجلة</span>
+        <button type="button" class="btn btn-discard btn-sm" id="clearAllCumulativeBtn"
+          style="padding:5px 10px; font-size:0.68rem;">
+          Clear All · مسح كل الأوقات
+        </button>
+      </div>
+
+      <div class="task-list" id="cumulativeSessionsList"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        STUDY TASKS & PROCEDURAL SIGILS MODAL
        ========================================================================== -->
   <div class="modal-center" id="tasksModal">
@@ -3247,7 +3451,7 @@
 
       <div style="display:flex; justify-content:space-between; gap:10px; margin-top:6px;">
         <button class="btn btn-sm" id="exportCsvBtn">Export CSV</button>
-        <button class="btn btn-sm" id="clearHistoryBtn">Clear History</button>
+        <button class="btn btn-discard btn-sm" id="clearHistoryBtn">Clear History</button>
       </div>
     </div>
   </div>
@@ -3262,7 +3466,7 @@
       Arcane seal has fulfilled its cycle.</p>
     <div style="display:flex; gap:8px; width:100%; justify-content:center; margin-top:4px;">
       <button class="btn" id="timesUpOkBtn">Dismiss</button>
-      <button class="btn btn-primary" id="timesUpRestartBtn">Restart Duration</button>
+      <button class="btn btn-primary" id="timesUpRestartBtn">Start New Session</button>
     </div>
   </div>
 
@@ -3285,7 +3489,8 @@
         HISTORY: 'morphos_unified_history_v6',
         COUNTDOWN: 'morphos_unified_countdown_v6',
         CUSTOM_TITLE: 'morphos_unified_custom_title_v6',
-        STOPWATCH_SEALS: 'morphos_unified_sw_seals_v6'
+        STOPWATCH_SEALS: 'morphos_unified_sw_seals_v6',
+        CUMULATIVE_SESSIONS: 'morphos_cumulative_sessions_v1'
       };
 
       const DEFAULT_SETTINGS = {
@@ -3344,6 +3549,7 @@
       ]);
       let studyHistory = loadJSON(STORAGE_KEYS.HISTORY, seedInitialHistory());
       let stopwatchSeals = loadJSONArray(STORAGE_KEYS.STOPWATCH_SEALS, []);
+      let cumulativeSessions = loadJSONArray(STORAGE_KEYS.CUMULATIVE_SESSIONS, []);
       let customTaskTitle = localStorage.getItem(STORAGE_KEYS.CUSTOM_TITLE) || '';
       let activeTaskId = tasks.length > 0 ? tasks[0].id : null;
       let inspectedTaskId = null;
@@ -3378,6 +3584,9 @@
       }
       function saveStopwatchSeals() {
         localStorage.setItem(STORAGE_KEYS.STOPWATCH_SEALS, JSON.stringify(stopwatchSeals.slice(-24)));
+      }
+      function saveCumulativeSessions() {
+        localStorage.setItem(STORAGE_KEYS.CUMULATIVE_SESSIONS, JSON.stringify(cumulativeSessions));
       }
       function saveCustomTaskTitle(val) {
         customTaskTitle = val;
@@ -3424,6 +3633,200 @@
       dockTaskInput.addEventListener('keydown', e => {
         if (e.key === 'Enter') dockTaskInput.blur();
       });
+
+      /* ------------------------------------------------------------------------
+         1B. CUMULATIVE TIME TRACKER HELPERS & LOG ENGINE
+         ------------------------------------------------------------------------ */
+      function formatDurationShort(ms) {
+        const totalSec = Math.max(0, Math.round(ms / 1000));
+        const h = Math.floor(totalSec / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        if (h > 0) {
+          return s > 0 ? `${h}h ${m}m ${s}s` : `${h}h ${String(m).padStart(2, '0')}m`;
+        }
+        if (m > 0) {
+          return s > 0 ? `${m}m ${s}s` : `${m} min`;
+        }
+        return `${s}s`;
+      }
+
+      function formatDurationClock(ms) {
+        const totalSec = Math.max(0, Math.round(ms / 1000));
+        const h = Math.floor(totalSec / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      }
+
+      function formatDurationArabic(ms) {
+        const totalSec = Math.max(0, Math.round(ms / 1000));
+        const h = Math.floor(totalSec / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        const parts = [];
+        if (h === 1) parts.push('ساعة واحدة');
+        else if (h === 2) parts.push('ساعتان');
+        else if (h >= 3 && h <= 10) parts.push(`${h} ساعات`);
+        else if (h > 10) parts.push(`${h} ساعة`);
+
+        if (m === 1) parts.push('دقيقة واحدة');
+        else if (m === 2) parts.push('دقيقتان');
+        else if (m >= 3 && m <= 10) parts.push(`${m} دقائق`);
+        else if (m > 10) parts.push(`${m} دقيقة`);
+
+        if (h === 0 && m === 0) {
+          parts.push(`${s} ثانية`);
+        } else if (s > 0) {
+          parts.push(`${s} ث`);
+        }
+        return parts.length > 0 ? `الإجمالي: ${parts.join(' و ')}` : 'الإجمالي: 0 دقيقة';
+      }
+
+      function getTotalCumulativeMs() {
+        return cumulativeSessions.reduce((acc, item) => acc + (Number(item.durationMs) || 0), 0);
+      }
+
+      function addCumulativeSession(durationMs, modeSource = 'timer', customLabel = '') {
+        const cleanMs = Math.max(1000, Math.round(durationMs / 1000) * 1000);
+        const taskLabel = (customLabel || customTaskTitle || '').trim();
+        const sessionObj = {
+          id: 'cs-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+          title: taskLabel,
+          durationMs: cleanMs,
+          mode: modeSource,
+          timestamp: Date.now()
+        };
+        cumulativeSessions.push(sessionObj);
+        saveCumulativeSessions();
+        updateCumulativeTrackerUI();
+        return sessionObj;
+      }
+
+      function deleteCumulativeSession(id) {
+        cumulativeSessions = cumulativeSessions.filter(s => s.id !== id);
+        saveCumulativeSessions();
+        updateCumulativeTrackerUI();
+      }
+
+      function clearAllCumulativeSessions() {
+        cumulativeSessions = [];
+        saveCumulativeSessions();
+        updateCumulativeTrackerUI();
+        showToast('Cumulative Time Tracker cleared · تم مسح السجل التراكمي');
+      }
+
+      function computeActiveSessionElapsedMs() {
+        if (currentMode === 'timer') {
+          const curRem = timerState.running ? Math.max(0, timerState.targetTimestamp - Date.now()) : timerState.remainingMs;
+          const durSec = Math.round(timerState.durationMs / 1000);
+          const remSec = Math.ceil(curRem / 1000);
+          let elapsedSec = Math.max(0, durSec - remSec);
+          if (elapsedSec === 0 && (timerState.durationMs - curRem) > 250) elapsedSec = 1;
+          return elapsedSec * 1000;
+        }
+        if (currentMode === 'study' && studyState.phase === 'work') {
+          const curRem = studyState.running ? Math.max(0, studyState.targetTimestamp - Date.now()) : studyState.remainingMs;
+          const durSec = Math.round(studyState.durationMs / 1000);
+          const remSec = Math.ceil(curRem / 1000);
+          let elapsedSec = Math.max(0, durSec - remSec);
+          if (elapsedSec === 0 && (studyState.durationMs - curRem) > 250) elapsedSec = 1;
+          return elapsedSec * 1000;
+        }
+        return 0;
+      }
+
+      function updateCumulativeTrackerUI() {
+        const totalMs = getTotalCumulativeMs();
+        const count = cumulativeSessions.length;
+        const activeElapsedMs = computeActiveSessionElapsedMs();
+
+        const cumPillTotalText = document.getElementById('cumPillTotalText');
+        const cumPillCountText = document.getElementById('cumPillCountText');
+        const cumPillLiveDelta = document.getElementById('cumPillLiveDelta');
+        const timerBadge = document.getElementById('timerLogCountBadge');
+        const studyBadge = document.getElementById('studyLogCountBadge');
+
+        if (cumPillTotalText) cumPillTotalText.textContent = formatDurationShort(totalMs);
+        if (cumPillCountText) cumPillCountText.textContent = count;
+        if (timerBadge) timerBadge.textContent = count;
+        if (studyBadge) studyBadge.textContent = count;
+
+        if (cumPillLiveDelta) {
+          if (activeElapsedMs >= 1000) {
+            cumPillLiveDelta.textContent = `+ ${formatDurationShort(activeElapsedMs)} current`;
+          } else {
+            cumPillLiveDelta.textContent = '';
+          }
+        }
+
+        // Enable/disable Finish & Count button in Timer mode based on whether time has elapsed
+        const timerFinishBtn = document.getElementById('timerFinishLogBtn');
+        if (timerFinishBtn && currentMode === 'timer') {
+          timerFinishBtn.disabled = activeElapsedMs < 1000;
+        }
+
+        // Update Modal if present
+        const heroTotal = document.getElementById('cumModalHeroTotal');
+        const heroArabic = document.getElementById('cumModalHeroArabic');
+        const modalCount = document.getElementById('cumModalSessionCount');
+        const modalClock = document.getElementById('cumModalClockFormat');
+        if (heroTotal) heroTotal.textContent = formatDurationShort(totalMs);
+        if (heroArabic) heroArabic.textContent = formatDurationArabic(totalMs);
+        if (modalCount) modalCount.textContent = count;
+        if (modalClock) modalClock.textContent = formatDurationClock(totalMs);
+
+        renderCumulativeSessionsList();
+      }
+
+      function renderCumulativeSessionsList() {
+        const listEl = document.getElementById('cumulativeSessionsList');
+        if (!listEl) return;
+
+        if (cumulativeSessions.length === 0) {
+          listEl.innerHTML = `
+            <div style="text-align:center; color:var(--text-secondary); padding:22px 12px; font-size:0.78rem; font-family:var(--font-mono); border:1px dashed var(--border-ui); border-radius:10px;">
+              No sessions recorded yet.<br/>
+              <span style="font-size:0.72rem; opacity:0.8;">شغّل التايمر واضغط (Finish & Count · إنهاء) في أي وقت ليتم جمع أوقات مذاكرتك هنا تلقائياً.</span>
+            </div>
+          `;
+          return;
+        }
+
+        listEl.innerHTML = '';
+        cumulativeSessions.forEach((sess, idx) => {
+          const sessionNumber = idx + 1;
+          const row = document.createElement('div');
+          row.className = 'cumulative-session-item';
+          const timeStr = new Date(sess.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const displayTitle = sess.title ? escapeHTML(sess.title) : `الجلسة #${sessionNumber} · Session ${sessionNumber}`;
+
+          row.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+              <span class="session-num-badge">#${sessionNumber}</span>
+              <div style="min-width:0; flex:1;">
+                <div style="font-size:0.82rem; font-weight:650; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                  ${displayTitle}
+                </div>
+                <div style="font-size:0.66rem; font-family:var(--font-mono); color:var(--text-secondary);">
+                  ${sess.mode === 'study' ? 'Study Focus' : 'Timer'} &middot; ${timeStr}
+                </div>
+              </div>
+            </div>
+            <span class="session-duration-pill">+ ${formatDurationShort(sess.durationMs)}</span>
+            <button type="button" class="icon-btn session-del-btn" style="width:30px; height:30px; color:#ff94ab;" title="Delete this session (حذف هذا الوقت)">
+              ✕
+            </button>
+          `;
+
+          row.querySelector('.session-del-btn').addEventListener('click', () => {
+            deleteCumulativeSession(sess.id);
+            showToast(`Deleted Session #${sessionNumber} · تم حذف الجلسة`);
+          });
+
+          listEl.appendChild(row);
+        });
+      }
 
       /* ------------------------------------------------------------------------
          2. PHASE 3: ARCANE CODEX ENGINE (DETERMINISTIC HASH, RUNE PATHS & SIGILS)
@@ -5856,14 +6259,16 @@
           totalFocusMinutes += (studyHistory[k].minutes || 0);
           totalSessions += (studyHistory[k].sessions || 0);
         });
-        const totalFocusHours = Math.round((totalFocusMinutes / 60) * 100) / 100;
+        // Also include cumulative sessions in Spell Circle evolution
+        const cumMinutes = Math.floor(getTotalCumulativeMs() / 60000);
+        const totalFocusHours = Math.round(((totalFocusMinutes + cumMinutes) / 60) * 100) / 100;
 
         let level = 1;
         if (totalFocusHours >= 50) level = 3;
         else if (totalFocusHours >= 10) level = 2;
 
         const seals = [];
-        const sessionSealCount = Math.min(18, totalSessions);
+        const sessionSealCount = Math.min(18, totalSessions + cumulativeSessions.length);
         for (let i = 0; i < sessionSealCount; i++) {
           const id = `seal-sess-${i}`;
           const h = hashStringDeterministic(id);
@@ -5930,7 +6335,7 @@
           svgHtml += `<circle cx="260" cy="260" r="${SOV_R}" stroke="${pal.arcaneTeal}" stroke-opacity="${Math.min(0.65, 0.22 + spellCircleFlash * 0.35)}" stroke-width="0.85"/>`;
         }
 
-        if (currentMode === 'study' || currentMode === 'countdown' || codex.level >= 2 || spellCircleFlash > 0.15) {
+        if (currentMode === 'study' || currentMode === 'timer' || currentMode === 'countdown' || codex.level >= 2 || spellCircleFlash > 0.15) {
           svgHtml += `<g stroke="${spellCircleFlash > 0.35 ? pal.arcaneViolet : pal.chordFilament}" stroke-opacity="${Math.min(0.55, 0.13 + clampedProg * 0.18 + spellCircleFlash * 0.35)}" stroke-width="0.7"><polygon points="260,102 397,339 123,339"/><polygon points="260,418 397,181 123,181"/></g>`;
         }
 
@@ -6086,6 +6491,7 @@
       const studySubtabs = document.getElementById('studySubtabs');
       const countdownHeader = document.getElementById('countdownHeader');
       const studyAchievementBar = document.getElementById('studyAchievementBar');
+      const cumulativeTrackerPill = document.getElementById('cumulativeTrackerPill');
       const ampmBadge = document.getElementById('ampmBadge');
       const digAmpmBadge = document.getElementById('digAmpmBadge');
       const morphAmpmBadge = document.getElementById('morphAmpmBadge');
@@ -6140,6 +6546,7 @@
         studySubtabs.style.display = 'none';
         countdownHeader.style.display = 'none';
         studyAchievementBar.style.display = 'none';
+        cumulativeTrackerPill.style.display = 'none';
         ampmBadge.classList.add('hidden');
         digAmpmBadge.classList.add('hidden');
         morphAmpmBadge.classList.add('hidden');
@@ -6170,14 +6577,18 @@
           setUnitVisibility('seconds', settings.showSeconds);
           updateClockTick(true);
         } else if (mode === 'timer') {
+          cumulativeTrackerPill.style.display = 'inline-flex';
           docks.timer.style.display = 'flex';
           renderTimerDisplay(true);
+          updateCumulativeTrackerUI();
         } else if (mode === 'study') {
           studySubtabs.style.display = 'flex';
           studyAchievementBar.style.display = 'inline-flex';
+          cumulativeTrackerPill.style.display = 'inline-flex';
           docks.study.style.display = 'flex';
           renderStudyDisplay(true);
           updateStudyTodayBar();
+          updateCumulativeTrackerUI();
         } else if (mode === 'stopwatch') {
           docks.stopwatch.style.display = 'flex';
           setUnitVisibility('centiseconds', true);
@@ -6296,19 +6707,33 @@
           timerState.remainingMs = Math.max(0, timerState.targetTimestamp - now);
           if (timerState.remainingMs === 0) {
             timerState.running = false;
+            // Automatically log the completed session into the Cumulative Time Tracker!
+            addCumulativeSession(timerState.durationMs, 'timer');
+            timerState.remainingMs = timerState.durationMs;
             updateTimerButtons();
             triggerSpellCircleFlash(1.0);
-            triggerTimeUpModal('Countdown Completed', 'Arcane timer seal has fulfilled its cycle.', 'timer');
+            const totalStr = formatDurationShort(getTotalCumulativeMs());
+            triggerTimeUpModal(
+              'Session Logged & Completed',
+              `Added ${formatDurationShort(timerState.durationMs)} to Cumulative Tracker. Total: ${totalStr} (${formatDurationArabic(getTotalCumulativeMs())})`,
+              'timer'
+            );
           }
         }
         if (studyState.running) {
           studyState.remainingMs = Math.max(0, studyState.targetTimestamp - now);
-          if (studyState.remainingMs === 0) handleStudySessionComplete();
+          if (studyState.remainingMs === 0) handleStudySessionComplete(false);
         }
 
         if (currentMode === 'clock') updateClockTick(false);
-        else if (currentMode === 'timer') renderTimerDisplay(false);
-        else if (currentMode === 'study') renderStudyDisplay(false);
+        else if (currentMode === 'timer') {
+          renderTimerDisplay(false);
+          updateCumulativeTrackerUI();
+        }
+        else if (currentMode === 'study') {
+          renderStudyDisplay(false);
+          updateCumulativeTrackerUI();
+        }
         else if (currentMode === 'countdown') renderCountdownDisplay(false);
 
         renderLivingSpellCircle(getActiveModeProgress());
@@ -6363,7 +6788,7 @@
       requestAnimationFrame(masterAnimationFrame);
 
       /* ------------------------------------------------------------------------
-         10. TIMER, STUDY (AUTO-HIDING TIME PICKERS), TASKS, STOPWATCH & COUNTDOWN
+         10. TIMER + CUMULATIVE TRACKER, STUDY, TASKS, STOPWATCH & COUNTDOWN
          ------------------------------------------------------------------------ */
       const PRESETS_LIST = [
         { label: '15s', sec: 15 }, { label: '20s', sec: 20 }, { label: '30s', sec: 30 }, { label: '45s', sec: 45 },
@@ -6383,13 +6808,14 @@
           timerPresetsGrid.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
           btn.classList.add('active');
           setTimerDuration(p.sec * 1000);
-          // Completely hide the time picker panel after choosing a time
           timerPresetsPanel.classList.add('hidden');
         });
         timerPresetsGrid.appendChild(btn);
       });
 
       const timerStartBtn = document.getElementById('timerStartBtn');
+      const timerFinishLogBtn = document.getElementById('timerFinishLogBtn');
+
       function setTimerDuration(ms) {
         sound.stopAlarmLoop();
         timerState.running = false;
@@ -6397,7 +6823,9 @@
         timerState.remainingMs = ms;
         updateTimerButtons();
         renderTimerDisplay(false);
+        updateCumulativeTrackerUI();
       }
+
       function toggleTimer() {
         sound.stopAlarmLoop();
         timerPresetsPanel.classList.add('hidden');
@@ -6411,20 +6839,52 @@
           sound.init();
         }
         updateTimerButtons();
+        updateCumulativeTrackerUI();
       }
-      function resetTimer() {
+
+      // Finish mid-timer & count the exact time spent so far
+      function finishAndLogTimerSession() {
         sound.stopAlarmLoop();
+        const elapsedMs = computeActiveSessionElapsedMs();
+        if (elapsedMs < 1000) {
+          showToast('Start the timer first to log elapsed time · شغّل التايمر أولاً');
+          return;
+        }
+        timerState.running = false;
+        const logged = addCumulativeSession(elapsedMs, 'timer');
+        timerState.remainingMs = timerState.durationMs;
+        updateTimerButtons();
+        renderTimerDisplay(false);
+        updateCumulativeTrackerUI();
+        triggerSpellCircleFlash(0.95);
+        sound.playHarmonicChime('minute');
+        showToast(`Logged +${formatDurationShort(logged.durationMs)} · ${formatDurationArabic(getTotalCumulativeMs())}`);
+      }
+
+      // Stop / Reset timer WITHOUT counting elapsed time
+      function resetTimerWithoutCounting() {
+        sound.stopAlarmLoop();
+        const hadElapsed = computeActiveSessionElapsedMs() >= 1000;
         timerState.running = false;
         timerState.remainingMs = timerState.durationMs;
         updateTimerButtons();
         renderTimerDisplay(false);
+        updateCumulativeTrackerUI();
+        if (hadElapsed) {
+          showToast('Stopped without counting · تم الإيقاف بدون حساب الوقت');
+        }
       }
+
       function updateTimerButtons() {
-        timerStartBtn.textContent = timerState.running ? 'Pause' : (timerState.remainingMs < timerState.durationMs && timerState.remainingMs > 0 ? 'Resume' : 'Start Timer');
+        timerStartBtn.textContent = timerState.running ? 'Pause · إيقاف مؤقت' : (timerState.remainingMs < timerState.durationMs && timerState.remainingMs > 0 ? 'Resume · استئناف' : 'Start Timer');
+        if (timerFinishLogBtn) {
+          timerFinishLogBtn.disabled = computeActiveSessionElapsedMs() < 1000;
+        }
       }
 
       timerStartBtn.addEventListener('click', toggleTimer);
-      document.getElementById('timerResetBtn').addEventListener('click', resetTimer);
+      timerFinishLogBtn.addEventListener('click', finishAndLogTimerSession);
+      document.getElementById('timerResetBtn').addEventListener('click', resetTimerWithoutCounting);
       document.getElementById('togglePresetsBtn').addEventListener('click', () => {
         timerPresetsPanel.classList.toggle('hidden');
       });
@@ -6461,7 +6921,6 @@
         btn.textContent = p.label;
         btn.addEventListener('click', () => {
           applyCustomStudyDurations(p.work, p.short, p.long);
-          // Completely hide the study time picker panel right after picking a preset
           studyTimeDockPanel.classList.add('hidden');
         });
         studyQuickPresetsGrid.appendChild(btn);
@@ -6474,7 +6933,7 @@
         settings.longBreakMin = Math.max(1, Math.min(180, parseInt(l, 10) || 15));
         saveSettings();
         applySettingsToDOM();
-        resetStudyTimer();
+        resetStudyTimer(true);
       }
 
       document.getElementById('applyStudyCustomTimeBtn').addEventListener('click', () => {
@@ -6482,7 +6941,6 @@
         const s = document.getElementById('studyCustomShortInput').value;
         const l = document.getElementById('studyCustomLongInput').value;
         applyCustomStudyDurations(w, s, l);
-        // Completely hide the study time picker panel after clicking Apply
         studyTimeDockPanel.classList.add('hidden');
         showToast(`Study Time: ${settings.workMin}m Focus / ${settings.shortBreakMin}m Break`);
       });
@@ -6507,7 +6965,11 @@
         studyState.remainingMs = studyState.durationMs;
         studyPhaseBtns.forEach(b => b.classList.toggle('active', b.dataset.studyPhase === phase));
         updateStudyButtons();
-        if (currentMode === 'study') { renderStudyDisplay(false); updateBottomLabels(); }
+        if (currentMode === 'study') {
+          renderStudyDisplay(false);
+          updateBottomLabels();
+          updateCumulativeTrackerUI();
+        }
       }
       studyPhaseBtns.forEach(btn => btn.addEventListener('click', () => setStudyPhase(btn.dataset.studyPhase)));
 
@@ -6524,34 +6986,52 @@
           sound.init();
         }
         updateStudyButtons();
+        updateCumulativeTrackerUI();
       }
-      function resetStudyTimer() {
+
+      // Stop / Reset study timer WITHOUT counting elapsed time
+      function resetStudyTimer(silent = false) {
         sound.stopAlarmLoop();
+        const hadElapsed = computeActiveSessionElapsedMs() >= 1000;
         studyState.running = false;
         studyState.durationMs = getPhaseDurationMs(studyState.phase);
         studyState.remainingMs = studyState.durationMs;
         updateStudyButtons();
         renderStudyDisplay(false);
         updateBottomLabels();
-      }
-      function updateStudyButtons() {
-        studyStartBtn.textContent = studyState.running ? 'Pause' : (studyState.remainingMs < studyState.durationMs && studyState.remainingMs > 0 ? 'Resume' : 'Start Session');
+        updateCumulativeTrackerUI();
+        if (!silent && hadElapsed) {
+          showToast('Stopped without counting · تم الإيقاف بدون حساب الوقت');
+        }
       }
 
-      function handleStudySessionComplete() {
+      function updateStudyButtons() {
+        studyStartBtn.textContent = studyState.running ? 'Pause · إيقاف مؤقت' : (studyState.remainingMs < studyState.durationMs && studyState.remainingMs > 0 ? 'Resume · استئناف' : 'Start Session');
+      }
+
+      function handleStudySessionComplete(manualTrigger = false) {
+        const elapsedMs = computeActiveSessionElapsedMs();
         studyState.running = false;
         triggerSpellCircleFlash(1.0);
 
         if (studyState.phase === 'work') {
+          // If triggered mid-way, count exact elapsed time; if not started yet or finished naturally, use full duration
+          const actualMs = (manualTrigger && elapsedMs >= 1000) ? elapsedMs : studyState.durationMs;
+          const actualMinutes = Math.max(1, Math.round(actualMs / 60000));
+
           studyState.sessionCount++;
           const key = getTodayKey();
           if (!studyHistory[key]) studyHistory[key] = { sessions: 0, minutes: 0 };
           studyHistory[key].sessions += 1;
-          studyHistory[key].minutes += settings.workMin;
+          studyHistory[key].minutes += actualMinutes;
           saveHistory();
           updateStudyTodayBar();
 
+          // Also add to Cumulative Time Tracker!
           const targetTask = tasks.find(t => t.id === activeTaskId) || tasks.find(t => !t.done);
+          const taskLabel = customTaskTitle || (targetTask ? targetTask.title : '');
+          const logged = addCumulativeSession(actualMs, 'study', taskLabel);
+
           if (targetTask) {
             targetTask.completed = (targetTask.completed || 0) + 1;
             if (settings.autoCheckTask && targetTask.completed >= targetTask.expected) {
@@ -6561,28 +7041,40 @@
             renderTasksList();
           }
 
+          if (manualTrigger) {
+            // Reset work timer ready for next session and show toast
+            setStudyPhase('work');
+            sound.playHarmonicChime('minute');
+            showToast(`Logged +${formatDurationShort(logged.durationMs)} · ${formatDurationArabic(getTotalCumulativeMs())}`);
+            return;
+          }
+
           const nextPhase = (studyState.sessionCount % 4 === 0) ? 'longBreak' : 'shortBreak';
           setStudyPhase(nextPhase);
           if (settings.autoStartBreaks) {
             sound.playHarmonicChime('completion');
             toggleStudyTimer();
           } else {
-            triggerTimeUpModal('Focus Session Sealed', 'Your focus session has been engraved into the Spell Circle.', 'study');
+            triggerTimeUpModal(
+              'Focus Session Logged',
+              `Added ${formatDurationShort(logged.durationMs)} to Cumulative Tracker. ${formatDurationArabic(getTotalCumulativeMs())}`,
+              'study'
+            );
           }
         } else {
           setStudyPhase('work');
           if (settings.autoStartWork) {
             sound.playHarmonicChime('minute');
             toggleStudyTimer();
-          } else {
+          } else if (!manualTrigger) {
             triggerTimeUpModal('Break Complete', 'Ready for the next focus cycle?', 'study');
           }
         }
       }
 
       studyStartBtn.addEventListener('click', toggleStudyTimer);
-      document.getElementById('studyResetBtn').addEventListener('click', resetStudyTimer);
-      document.getElementById('studyCompleteNowBtn').addEventListener('click', handleStudySessionComplete);
+      document.getElementById('studyResetBtn').addEventListener('click', () => resetStudyTimer(false));
+      document.getElementById('studyCompleteNowBtn').addEventListener('click', () => handleStudySessionComplete(true));
       document.getElementById('toggleSoundscapeDockBtn').addEventListener('click', () => {
         document.getElementById('studySoundscapeDockPanel').classList.toggle('hidden');
         studyTimeDockPanel.classList.add('hidden');
@@ -6805,6 +7297,7 @@
         saveHistory();
         updateStudyTodayBar();
         renderStatisticsModal();
+        showToast('Analytics history cleared');
       });
 
       /* Stopwatch Controls */
@@ -6920,14 +7413,22 @@
       const settingsDrawer = document.getElementById('settingsDrawer');
       const tasksModal = document.getElementById('tasksModal');
       const statsModal = document.getElementById('statsModal');
+      const cumulativeModal = document.getElementById('cumulativeModal');
 
       function closeAllModals() {
         settingsDrawer.classList.remove('open');
         tasksModal.classList.remove('open');
         statsModal.classList.remove('open');
+        cumulativeModal.classList.remove('open');
         timesUpModal.classList.remove('open');
         globalBackdrop.classList.remove('open');
         sound.stopAlarmLoop();
+      }
+
+      function openCumulativeTrackerModal() {
+        updateCumulativeTrackerUI();
+        cumulativeModal.classList.add('open');
+        globalBackdrop.classList.add('open');
       }
 
       function triggerTimeUpModal(title, subtitle, context) {
@@ -6942,8 +7443,8 @@
       document.getElementById('timesUpOkBtn').addEventListener('click', closeAllModals);
       document.getElementById('timesUpRestartBtn').addEventListener('click', () => {
         closeAllModals();
-        if (lastCompletedContext === 'timer') { resetTimer(); toggleTimer(); }
-        else if (lastCompletedContext === 'study') { resetStudyTimer(); toggleStudyTimer(); }
+        if (lastCompletedContext === 'timer') { resetTimerWithoutCounting(); toggleTimer(); }
+        else if (lastCompletedContext === 'study') { resetStudyTimer(true); toggleStudyTimer(); }
         else if (lastCompletedContext === 'countdown') saveCountdownTarget(countdownState.title, Date.now() + 3600 * 1000);
       });
 
@@ -6953,6 +7454,26 @@
       document.getElementById('closeTasksModalBtn').addEventListener('click', closeAllModals);
       document.getElementById('openStatsModalBtn').addEventListener('click', () => { renderStatisticsModal(); statsModal.classList.add('open'); globalBackdrop.classList.add('open'); });
       document.getElementById('closeStatsModalBtn').addEventListener('click', closeAllModals);
+
+      // Cumulative Modal Triggers & Actions
+      document.getElementById('cumulativeTrackerPill').addEventListener('click', openCumulativeTrackerModal);
+      document.getElementById('openCumulativeModalTimerBtn').addEventListener('click', openCumulativeTrackerModal);
+      document.getElementById('openCumulativeModalStudyBtn').addEventListener('click', openCumulativeTrackerModal);
+      document.getElementById('closeCumulativeModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('clearAllCumulativeBtn').addEventListener('click', clearAllCumulativeSessions);
+
+      document.getElementById('manualAddSessionForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const titleInput = document.getElementById('manualSessionTitle');
+        const minInput = document.getElementById('manualSessionMin');
+        const mins = Math.max(1, parseInt(minInput.value, 10) || 1);
+        const label = titleInput.value.trim();
+        addCumulativeSession(mins * 60 * 1000, currentMode === 'study' ? 'study' : 'timer', label);
+        titleInput.value = '';
+        sound.playHarmonicChime('lap');
+        showToast(`Added +${mins} min · ${formatDurationArabic(getTotalCumulativeMs())}`);
+      });
+
       globalBackdrop.addEventListener('click', closeAllModals);
 
       function applySettingsToDOM() {
@@ -7100,7 +7621,7 @@
           if (target === 'longBreak') settings.longBreakMin = Math.min(180, Math.max(1, settings.longBreakMin + delta));
           if (target === 'dailyGoal') settings.dailyGoal = Math.min(48, Math.max(1, settings.dailyGoal + delta));
           saveSettings(); applySettingsToDOM();
-          if (!studyState.running) resetStudyTimer();
+          if (!studyState.running) resetStudyTimer(true);
         });
       });
 
@@ -7112,7 +7633,7 @@
           if (inputId === 'stepValLong') settings.longBreakMin = Math.min(180, val);
           if (inputId === 'stepValGoal') settings.dailyGoal = Math.min(48, val);
           saveSettings(); applySettingsToDOM();
-          if (!studyState.running) resetStudyTimer();
+          if (!studyState.running) resetStudyTimer(true);
         });
       });
 
@@ -7157,7 +7678,7 @@
         settings = { ...DEFAULT_SETTINGS };
         saveSettings();
         applySettingsToDOM();
-        resetStudyTimer();
+        resetStudyTimer(true);
       });
 
       /* Triple-Layer Keep-Awake for Mobile & Tablet */
@@ -7251,7 +7772,7 @@
         if (isCleanFullscreen) return; // Stay 100% clean in Fullscreen until user double-taps or exits
         document.body.classList.remove('is-idle');
         clearTimeout(idleTimer);
-        const modalOpen = settingsDrawer.classList.contains('open') || tasksModal.classList.contains('open') || statsModal.classList.contains('open') || timesUpModal.classList.contains('open');
+        const modalOpen = settingsDrawer.classList.contains('open') || tasksModal.classList.contains('open') || statsModal.classList.contains('open') || cumulativeModal.classList.contains('open') || timesUpModal.classList.contains('open');
         const activeTag = document.activeElement ? document.activeElement.tagName : '';
         if (modalOpen || activeTag === 'INPUT' || activeTag === 'SELECT') return;
         idleTimer = setTimeout(() => {
@@ -7270,7 +7791,7 @@
         fullscreenToast.textContent = msg;
         fullscreenToast.classList.add('show');
         clearTimeout(toastTimeout);
-        toastTimeout = setTimeout(() => fullscreenToast.classList.remove('show'), 2200);
+        toastTimeout = setTimeout(() => fullscreenToast.classList.remove('show'), 2500);
       }
 
       function enterCleanFullscreen() {
@@ -7361,6 +7882,7 @@
       /* Initialization */
       applySettingsToDOM();
       renderTasksList();
+      updateCumulativeTrackerUI();
       switchMode('clock');
       engageAllKeepAwakeLayers();
     })();
